@@ -49,12 +49,14 @@
 
             <a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box>
 			
-            <a-sphere id="aEsfera" position='0 1 0' radius="0.1" color="blue">
+            <a-sphere id="aEsfera" position='0 2 0' radius="0.1" color="blue">
                 <a-animation attribute="scale" dur="1000" from="1 1 1" to="2 2 2" direction="alternate-reverse" easing="ease-in-out-circ" repeat="indefinite"></a-animation>
             </a-sphere>
+			
+			<a-entity id="aSonido"></a-entity>
 <!--
             <a-cylinder position="1 1 1" radius="0.3" height="1.5" color="pink"></a-cylinder>
-
+			
             <a-plane position="0 0 0" rotation="-90 0 0" width="3" height="3" material='opacity: 0.5;'></a-plane>
             <a-text side="double"  font="mozillavr" value="Prototipo I" position='-0.5 3 0' color='red'></a-text>
             <a-text side="front" font="kelsonsans" value="Practica Profesional Supervisada I" position='-1.5 3 0.5' color='#FA5858'></a-text>
@@ -68,6 +70,7 @@
 <script>	
 	var esfera = document.getElementById('aEsfera');
 	var cubo = document.getElementById('aCubo');
+	var sonido = document.getElementById('aSonido');
 	function lesionarAGago() {
 		var esfera = document.getElementById('aEsfera');
 		var cubo = document.getElementById('aCubo');
@@ -85,20 +88,24 @@
 	}
 	
 	function mostrarEsfera() {
+		sonido.removeAttribute('sound');
 		esfera.setAttribute('visible', 'true');
 		cubo.setAttribute('visible', 'false');
 	}
 	
 	function mostrarCubo() {
+		sonido.removeAttribute('sound');
 		esfera.setAttribute('visible', 'false');
 		cubo.setAttribute('visible', 'true');
 	}
 	
 	function emitirSonido() {
-		alert("Esta funcionalidad aún no está reallizada.");
+		//alert("Esta funcionalidad aún no está reallizada.");
+		sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
 	}
 	
 	function mostrarTodo() {
+		sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
 		esfera.setAttribute('visible', 'true');
 		cubo.setAttribute('visible', 'true');
 	}
