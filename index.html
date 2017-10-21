@@ -8,52 +8,56 @@
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
-    <div style="text-align:center;padding-top: 20px;position:fixed;top: 0px;right: 0px;left: 0px;height: 200px; z-index:999" hidden>
+    <!--div style="text-align:center;padding-top: 20px;position:fixed;top: 0px;right: 0px;left: 0px;height: 200px; z-index:999" hidden>
 		<input id="btnIniciarCamara" type="button" value="Toca a Gago" onclick="lesionarAGago();" style="width: 200px; height: 130px;"></input>
-	</div>
+	</div-->
 	<nav class="quick-nav">
-            <a class="quick-nav-trigger" href="#0">
-                <span aria-hidden="true"></span>
-            </a>
-            <ul>
-                <li>
-                    <a onclick="mostrarEsfera();">
-                        <span>Esfera</span>
-                        <i class="icon-film"></i>
-                    </a>
-                </li>
-                <li>
-                    <a onclick="mostrarCubo();">
-                        <span>Cuadrado</span>
-                        <i class="icon-doc"></i>
-                    </a>
-                </li>
-                <li>
-                    <a onclick="emitirSonido();">
-                        <span>Sonido</span>
-                        <i class="icon-music-tone-alt"></i>
-                    </a>
-                </li>
-                <li>
-                    <a onclick="mostrarTodo();">
-                        <span>Todo</span>
-                        <i class="icon-size-fullscreen"></i>
-                    </a>
-                </li>
-            </ul>
-            <span aria-hidden="true" class="quick-nav-bg"></span>
-        </nav>
+		<a class="quick-nav-trigger" href="#0">
+			<span aria-hidden="true"></span>
+		</a>
+		<ul>
+			<li>
+				<a onclick="mostrarEsfera();">
+					<span>Esfera</span>
+					<i class="icon-film"></i>
+				</a>
+			</li>
+			<li>
+				<a onclick="mostrarCubo();">
+					<span>Cuadrado</span>
+					<i class="icon-doc"></i>
+				</a>
+			</li>
+			<li>
+				<a onclick="emitirSonido();">
+					<span>Sonido</span>
+					<i class="icon-music-tone-alt"></i>
+				</a>
+			</li>
+			<li>
+				<a onclick="mostrarTodo();">
+					<span>Todo</span>
+					<i class="icon-size-fullscreen"></i>
+				</a>
+			</li>
+		</ul>
+		<span aria-hidden="true" class="quick-nav-bg"></span>
+	</nav>
 	<!-- creas la escena -->
     <a-scene embedded arjs='trackingMethod: best;'>
-        <a-anchor hit-testing-enabled='true'>
+        <a-anchor><!-- hit-testing-enabled='true'-->
 
-            <a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box>
+            <!--<a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box> -->
 			
             <a-sphere id="aEsfera" position='0 2 0' radius="0.1" color="blue">
                 <a-animation attribute="scale" dur="1000" from="1 1 1" to="2 2 2" direction="alternate-reverse" easing="ease-in-out-circ" repeat="indefinite"></a-animation>
             </a-sphere>
+			<a-entity id="aCubo" position="0 2.5 0" wasd-controls look-controls-for-position
+                text="width: 2; color: white; value: Practica \nProfesional \nSupervisada I" rotation="-60">
+			</a-entity>
+			<a-entity id="aSonido" sound="src: url(res/mario.mpeg);"></a-entity>
 			
-			<a-entity id="aSonido"></a-entity>
+			<!--a-entity id="aSonido"></a-entity-->
 <!--
             <a-cylinder position="1 1 1" radius="0.3" height="1.5" color="pink"></a-cylinder>
 			
@@ -62,16 +66,14 @@
             <a-text side="front" font="kelsonsans" value="Practica Profesional Supervisada I" position='-1.5 3 0.5' color='#FA5858'></a-text>
 -->			
         </a-anchor>
-        <a-camera-static/>
+        <a-entity camera static /><!--look-controls />-->
     </a-scene>
 </body>
 </html>
 <script src="js/quick-nav.js"></script>
+<script src="look-controls.js"></script>
 <script>	
-	var esfera = document.getElementById('aEsfera');
-	var cubo = document.getElementById('aCubo');
-	var sonido = document.getElementById('aSonido');
-	function lesionarAGago() {
+	/*function lesionarAGago() {
 		var esfera = document.getElementById('aEsfera');
 		var cubo = document.getElementById('aCubo');
 		var boton = document.getElementById('btnIniciarCamara');
@@ -84,30 +86,56 @@
 			esfera.setAttribute('visible', 'false');
 			cubo.setAttribute('visible', 'true');
 		}
-		var sceneEl = document.querySelector('a-scene');
-	}
+	}*/	
+	
+	var esfera = document.getElementById('aEsfera');
+	var cubo = document.getElementById('aCubo');
+	var sonido = document.querySelector('#aSonido');
+	//var sonido = document.getElementById('aSonido');
+	//var sonido = document.getElementById('aSonido');
+	var escena = document.querySelector('a-scene');
 	
 	function mostrarEsfera() {
-		sonido.removeAttribute('sound');
+		pausarSonido();
 		esfera.setAttribute('visible', 'true');
 		cubo.setAttribute('visible', 'false');
 	}
 	
 	function mostrarCubo() {
-		sonido.removeAttribute('sound');
+		pausarSonido();
+		//sonido.removeAttribute('sound');
 		esfera.setAttribute('visible', 'false');
 		cubo.setAttribute('visible', 'true');
 	}
 	
 	function emitirSonido() {
 		//alert("Esta funcionalidad aún no está reallizada.");
-		sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
+		//sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
+		//pausarSonido();
+		//var sonido = document.createElement('a-entity');
+		//sonido.setAttribute('id', 'aSonido');
+		//sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
+		//escena.appendChild(sonido);
+		sonido.components.sound.playSound();
 	}
 	
 	function mostrarTodo() {
-		sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
 		esfera.setAttribute('visible', 'true');
 		cubo.setAttribute('visible', 'true');
+		emitirSonido();
+	}
+	
+	function pausarSonido() {
+		sonido.components.sound.pauseSound();
+		/*if ((document.getElementById('aSonido') !== null)) {
+			var sonido = document.getElementById('aSonido');
+			console.log(sonido);
+			console.log(escena);
+			//document.getElementById('aSonido').remove();
+			document.querySelector('#aSonido').pause();
+			//escena.removeChild(sonido);
+			//No se puede eliminar hasta que no se crea el sonido.
+		}*/
 	}
 </script>
 </body>
