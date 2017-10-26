@@ -5,6 +5,8 @@
 	<script src="js/jquery-3.2.1.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/nav.css">
 	<link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
+	
+	<script src="look-controls.js"></script>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
@@ -48,7 +50,7 @@
         <a-anchor><!-- hit-testing-enabled='true'-->
 
             <!--<a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box> -->
-			
+
             <a-sphere id="aEsfera" position='0 2 0' radius="0.1" color="blue">
                 <a-animation attribute="scale" dur="1000" from="1 1 1" to="2 2 2" direction="alternate-reverse" easing="ease-in-out-circ" repeat="indefinite"></a-animation>
             </a-sphere>
@@ -71,7 +73,9 @@
 </body>
 </html>
 <script src="js/quick-nav.js"></script>
+
 <script src="aframe-drag-look-controls-component.js"></script>
+
 <script>	
 	/*function lesionarAGago() {
 		var esfera = document.getElementById('aEsfera');

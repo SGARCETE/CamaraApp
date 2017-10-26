@@ -1,7 +1,10 @@
 var registerComponent = AFRAME.registerComponent;
 var THREE = window.THREE;
-//var DEFAULT_CAMERA_HEIGHT = AFRAME.constants.DEFAULT_CAMERA_HEIGHT;
-var bind = AFRAME.bind;
+var DEFAULT_CAMERA_HEIGHT = 1.6;
+var bind = AFRAME.utils.bind;//require("bind.js");
+console.log(bind);
+var mivar = 1;
+
 
 // To avoid recalculation at every mouse movement tick
 var GRABBING_CLASS = 'a-grabbing';
@@ -10,7 +13,9 @@ var radToDeg = THREE.Math.radToDeg;
 /**
  * look-controls. Update entity pose, factoring mouse, touch, and WebVR API data.
  
-module.exports.*/Component = registerComponent('look-controls-for-position', {
+module.exports.Component = */
+
+registerComponent('look-controls-for-position', {
   dependencies: ['position', 'rotation'],
 
   schema: {
@@ -22,8 +27,7 @@ module.exports.*/Component = registerComponent('look-controls-for-position', {
   },
 
   init: function () {
-    var sceneEl = this.el.sceneEl;
-
+    var sceneEl = this.el.sceneEl;	
     this.previousHMDPosition = new THREE.Vector3();
     this.hmdQuaternion = new THREE.Quaternion();
     this.hmdEuler = new THREE.Euler();
@@ -69,12 +73,10 @@ module.exports.*/Component = registerComponent('look-controls-for-position', {
    */
   getUserHeight: function () {
     var el = this.el;
-	/*
+	
     return el.hasAttribute('camera')
       ? el.getAttribute('camera').userHeight
       : DEFAULT_CAMERA_HEIGHT;
-	  */
-	  return el.getAttribute('camera').userHeight;
   },
 
   play: function () {
@@ -295,6 +297,7 @@ module.exports.*/Component = registerComponent('look-controls-for-position', {
    * Register mouse down to detect mouse drag.
    */
   onMouseDown: function (evt) {
+	  console.log("Mouse bajando");
     if (!this.data.enabled) { return; }
     // Handle only primary button.
     if (evt.button !== 0) { return; }
