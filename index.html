@@ -1,146 +1,178 @@
 <!DOCTYPE html>
 <head>
-	<script src="aframe.min.js"></script>
-	<script src="aframe-ar.min.js"></script>
-	<script src="js/jquery-3.2.1.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/nav.css">
-	<link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
-	
-	<script src="look-controls.js"></script>
+    <script src="aframe.min.js"></script>
+    <script src="aframe-ar.min.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
+
+    <script src="look-controls.js"></script>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
-    <!--div style="text-align:center;padding-top: 20px;position:fixed;top: 0px;right: 0px;left: 0px;height: 200px; z-index:999" hidden>
-		<input id="btnIniciarCamara" type="button" value="Toca a Gago" onclick="lesionarAGago();" style="width: 200px; height: 130px;"></input>
-	</div-->
-	<nav class="quick-nav">
-		<a class="quick-nav-trigger" href="#0">
-			<span aria-hidden="true"></span>
-		</a>
-		<ul>
-			<li>
-				<a onclick="mostrarEsfera();">
-					<span>Esfera</span>
-					<i class="icon-film"></i>
-				</a>
-			</li>
-			<li>
-				<a onclick="mostrarCubo();">
-					<span>Cuadrado</span>
-					<i class="icon-doc"></i>
-				</a>
-			</li>
-			<li>
-				<a onclick="emitirSonido();">
-					<span>Sonido</span>
-					<i class="icon-music-tone-alt"></i>
-				</a>
-			</li>
-			<li>
-				<a onclick="mostrarTodo();">
-					<span>Todo</span>
-					<i class="icon-size-fullscreen"></i>
-				</a>
-			</li>
-		</ul>
-		<span aria-hidden="true" class="quick-nav-bg"></span>
-	</nav>
-	<!-- creas la escena -->
-    <a-scene embedded arjs='trackingMethod: best;'>
-        <a-anchor><!-- hit-testing-enabled='true'-->
+<!--div style="text-align:center;padding-top: 20px;position:fixed;top: 0px;right: 0px;left: 0px;height: 200px; z-index:999" hidden>
+    <input id="btnIniciarCamara" type="button" value="Toca a Gago" onclick="lesionarAGago();" style="width: 200px; height: 130px;"></input>
+</div-->
 
-            <!--<a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box> -->
+<nav class="quick-nav">
+    <a class="quick-nav-trigger" href="#0">
+        <span aria-hidden="true"></span>
+    </a>
+    <ul>
+        <li>
+            <a onclick="mostrarEsfera();">
+                <span>Esfera</span>
+                <i class="icon-film"></i>
+            </a>
+        </li>
+        <li>
+            <a onclick="mostrarCubo();">
+                <span>Cuadrado</span>
+                <i class="icon-doc"></i>
+            </a>
+        </li>
+        <li>
+            <a onclick="emitirSonido();">
+                <span>Sonido</span>
+                <i class="icon-music-tone-alt"></i>
+            </a>
+        </li>
+        <li>
+            <a onclick="mostrarTodo();">
+                <span>Todo</span>
+                <i class="icon-size-fullscreen"></i>
+            </a>
+        </li>
+    </ul>
+    <span aria-hidden="true" class="quick-nav-bg"></span>
+</nav>
 
-            <a-sphere id="aEsfera" position='0 2 0' radius="0.1" color="blue">
-                <a-animation attribute="scale" dur="1000" from="1 1 1" to="2 2 2" direction="alternate-reverse" easing="ease-in-out-circ" repeat="indefinite"></a-animation>
-            </a-sphere>
-			<a-entity id="aCubo" position="0 2.5 0" wasd-controls look-controls-for-position
-                text="width: 2; color: white; value: Practica \nProfesional \nSupervisada I" rotation="-60">
-			</a-entity>
-			<a-entity id="aSonido" sound="src: url(res/mario.mpeg);"></a-entity>
-			
-			<!--a-entity id="aSonido"></a-entity-->
-<!--
-            <a-cylinder position="1 1 1" radius="0.3" height="1.5" color="pink"></a-cylinder>
-			
-            <a-plane position="0 0 0" rotation="-90 0 0" width="3" height="3" material='opacity: 0.5;'></a-plane>
-            <a-text side="double"  font="mozillavr" value="Prototipo I" position='-0.5 3 0' color='red'></a-text>
-            <a-text side="front" font="kelsonsans" value="Practica Profesional Supervisada I" position='-1.5 3 0.5' color='#FA5858'></a-text>
--->			
-        </a-anchor>
-        <a-entity camera static /><!--look-controls />-->
-    </a-scene>
-</body>
-</html>
-<script src="js/quick-nav.js"></script>
 
-<script src="aframe-drag-look-controls-component.js"></script>
+<!-- creas la escena -->
+<a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
-<script>	
-	/*function lesionarAGago() {
-		var esfera = document.getElementById('aEsfera');
-		var cubo = document.getElementById('aCubo');
-		var boton = document.getElementById('btnIniciarCamara');
-		if (boton.value === "Toca a Gago") {
-			boton.value = "Mas despacio que se lesiona";
-			esfera.setAttribute('visible', 'true');
-			cubo.setAttribute('visible', 'false');			
-		} else {
-			boton.value = "Toca a Gago";
-			esfera.setAttribute('visible', 'false');
-			cubo.setAttribute('visible', 'true');
-		}
-	}*/	
-	
-	var esfera = document.getElementById('aEsfera');
-	var cubo = document.getElementById('aCubo');
-	var sonido = document.querySelector('#aSonido');
-	//var sonido = document.getElementById('aSonido');
-	//var sonido = document.getElementById('aSonido');
-	var escena = document.querySelector('a-scene');
-	
-	function mostrarEsfera() {
-		pausarSonido();
-		esfera.setAttribute('visible', 'true');
-		cubo.setAttribute('visible', 'false');
-	}
-	
-	function mostrarCubo() {
-		pausarSonido();
-		//sonido.removeAttribute('sound');
-		esfera.setAttribute('visible', 'false');
-		cubo.setAttribute('visible', 'true');
-	}
-	
-	function emitirSonido() {
-		//alert("Esta funcionalidad aún no está reallizada.");
-		//sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
-		//pausarSonido();
-		//var sonido = document.createElement('a-entity');
-		//sonido.setAttribute('id', 'aSonido');
-		//sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
-		//escena.appendChild(sonido);
-		sonido.components.sound.playSound();
-	}
-	
-	function mostrarTodo() {
-		esfera.setAttribute('visible', 'true');
-		cubo.setAttribute('visible', 'true');
-		emitirSonido();
-	}
-	
-	function pausarSonido() {
-		sonido.components.sound.pauseSound();
-		/*if ((document.getElementById('aSonido') !== null)) {
-			var sonido = document.getElementById('aSonido');
-			console.log(sonido);
-			console.log(escena);
-			//document.getElementById('aSonido').remove();
-			document.querySelector('#aSonido').pause();
-			//escena.removeChild(sonido);
-			//No se puede eliminar hasta que no se crea el sonido.
-		}*/
-	}
-</script>
+
+
+    <a-mixin id="cred" color="color: red"></a-mixin>
+    <a-mixin id="cblue" material="color: blue"></a-mixin>
+    <a-mixin id="cube" geometry="primitive: box"></a-mixin>
+
+
+        <!--<a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box> -->
+
+    <a-marker preset='kanji'>
+        <a-sphere id="aEsfera" position='0 2 0' radius="0.1" mixin="cblue">
+            <a-animation attribute="scale" dur="1000" from="1 1 1" to="2 2 2" direction="alternate-reverse"
+                         easing="ease-in-out-circ" repeat="indefinite"></a-animation>
+        </a-sphere>
+        <a-entity id="aCubo" position="0 2.5 0" wasd-controls look-controls-for-position
+                  text="width: 2; color: white; value: Kanji" rotation="-60">
+        </a-entity>
+        <a-entity id="aSonido" sound="src: url(res/mario.mpeg);"></a-entity>
+
+    </a-marker>
+
+    <a-marker preset='hiro'>
+        <a-sphere id="bEsfera" position='0 2 0' radius="0.1" color="red">
+            <a-animation attribute="scale" dur="1000" from="1 1 1" to="2 2 2" direction="alternate-reverse"
+                         easing="ease-in-out-circ" repeat="indefinite"></a-animation>
+        </a-sphere>
+        <a-entity id="bCubo" position="0 2.5 0" wasd-controls look-controls-for-position
+                  text="width: 2; color: white; value: hiro" rotation="-60">
+        </a-entity>
+
+    </a-marker>
+        <!--a-entity id="aSonido"></a-entity-->
+        <!--
+                    <a-cylinder position="1 1 1" radius="0.3" height="1.5" color="pink"></a-cylinder>
+
+                    <a-plane position="0 0 0" rotation="-90 0 0" width="3" height="3" material='opacity: 0.5;'></a-plane>
+                    <a-text side="double"  font="mozillavr" value="Prototipo I" position='-0.5 3 0' color='red'></a-text>
+                    <a-text side="front" font="kelsonsans" value="Practica Profesional Supervisada I" position='-1.5 3 0.5' color='#FA5858'></a-text>
+        -->
+
+    <a-entity camera/><!--look-controls />-->
+
+
+    <script src="js/quick-nav.js"></script>
+    <script src="aframe-drag-look-controls-component.js"></script>
+
+    <script>
+        /*function lesionarAGago() {
+         var esfera = document.getElementById('aEsfera');
+         var cubo = document.getElementById('aCubo');
+         var boton = document.getElementById('btnIniciarCamara');
+         if (boton.value === "Toca a Gago") {
+         boton.value = "Mas despacio que se lesiona";
+         esfera.setAttribute('visible', 'true');
+         cubo.setAttribute('visible', 'false');
+         } else {
+         boton.value = "Toca a Gago";
+         esfera.setAttribute('visible', 'false');
+         cubo.setAttribute('visible', 'true');
+         }
+         }*/
+
+        var aesfera = document.getElementById('aEsfera');
+        var acubo = document.getElementById('aCubo');
+        var asonido = document.querySelector('#aSonido');
+
+        var besfera = document.getElementById('bEsfera');
+        var bcubo = document.getElementById('bCubo');
+
+        //var sonido = document.getElementById('aSonido');
+        //var sonido = document.getElementById('aSonido');
+        var escena = document.querySelector('a-scene');
+
+        function mostrarEsfera() {
+            pausarSonido();
+            aesfera.setAttribute('visible', 'true');
+            acubo.setAttribute('visible', 'false');
+            besfera.setAttribute('visible', 'true');
+            bcubo.setAttribute('visible', 'false');
+        }
+
+        function mostrarCubo() {
+            pausarSonido();
+            //sonido.removeAttribute('sound');
+            aesfera.setAttribute('visible', 'false');
+            acubo.setAttribute('visible', 'true');
+            besfera.setAttribute('visible', 'false');
+            bcubo.setAttribute('visible', 'true');
+        }
+
+        function emitirSonido() {
+            //alert("Esta funcionalidad aún no está reallizada.");
+            //sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
+            //pausarSonido();
+            //var sonido = document.createElement('a-entity');
+            //sonido.setAttribute('id', 'aSonido');
+            //sonido.setAttribute('sound', 'src: url(res/mario.mpeg); autoplay: true');
+            //escena.appendChild(sonido);
+            asonido.components.sound.playSound();
+        }
+
+        function mostrarTodo() {
+            aesfera.setAttribute('visible', 'true');
+            acubo.setAttribute('visible', 'true');
+            besfera.setAttribute('visible', 'true');
+            bcubo.setAttribute('visible', 'true');
+            emitirSonido();
+        }
+
+        function pausarSonido() {
+            asonido.components.sound.pauseSound();
+            /*if ((document.getElementById('aSonido') !== null)) {
+             var sonido = document.getElementById('aSonido');
+             console.log(sonido);
+             console.log(escena);
+             //document.getElementById('aSonido').remove();
+             document.querySelector('#aSonido').pause();
+             //escena.removeChild(sonido);
+             //No se puede eliminar hasta que no se crea el sonido.
+             }*/
+        }
+    </script>
+</a-scene>
 </body>
 </html>
