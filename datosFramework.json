@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1111,
+    "type": "primitive: sphere",
+    "position":"0 2 1.4",
+    "material": "color: black;"
+  },
+  {
+    "id": 1112,
+    "type": "primitive: box",
+    "position":"0 2 0",
+    "material": "color: yellow;"
+  }
+]

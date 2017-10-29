@@ -1,0 +1,19 @@
+[
+  {
+    "type": "box",
+    "position":"0 2 0",
+    "radius": "0.5",
+    "color": "red"
+  },
+  {
+    "type": "box",
+    "position":"0 2 0",
+    "color": "blue"
+  },
+  {
+    "type": "cylinder",
+    "position":"0.5 2 1",
+    "radius": "0.3",
+    "color": "yellow"
+  }
+]

@@ -8221,11 +8221,11 @@ AFRAME.registerComponent('arjs-anchor', {
 					containerElement = document.createElement('div')
 					containerElement.id = 'arjsDebugUIContainer'
 					containerElement.setAttribute('style', 'position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1; color: grey;')
-					//document.body.appendChild(containerElement)
+					document.body.appendChild(containerElement)
 				}
 				// create anchorDebugUI
 				var anchorDebugUI = new ARjs.AnchorDebugUI(arAnchor)
-				//containerElement.appendChild(anchorDebugUI.domElement)		
+				containerElement.appendChild(anchorDebugUI.domElement)		
 			}
 		}, 1000/60)
 	},
@@ -8639,12 +8639,12 @@ AFRAME.registerSystem('arjs', {
 					containerElement = document.createElement('div')
 					containerElement.id = 'arjsDebugUIContainer'
 					containerElement.setAttribute('style', 'position: fixed; bottom: 10px; width:100%; text-align: center; z-index: 1;color: grey;')
-					//document.body.appendChild(containerElement)
+					document.body.appendChild(containerElement)
 				}
 
 				// create sessionDebugUI
 				var sessionDebugUI = new ARjs.SessionDebugUI(arSession)
-				//containerElement.appendChild(sessionDebugUI.domElement)
+				containerElement.appendChild(sessionDebugUI.domElement)
 			}
 		})
 
