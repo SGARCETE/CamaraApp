@@ -54,19 +54,24 @@
 
 
     <a-mixin id="cred" color="color: red"></a-mixin>
-    <a-mixin id="cblue" material="color: blue"></a-mixin>
-    <a-mixin id="cube" geometry="primitive: box"></a-mixin>
+    <a-mixin id="cubecblue" material="color: blue"></a-mixin>
+    <a-mixin id="cblue" geometry="primitive: box" material="color: blue"></a-mixin>
 
 
         <!--<a-box id="aCubo" position='0 1 0' color="#FFC65D" visible="false"></a-box> -->
 
     <a-marker preset='kanji'>
-        <a-sphere id="aEsfera" position='0 2 0' radius="0.1" mixin="cblue">
+        <a-entity id="aEsfera" position='0 2 0' radius="0.1" mixin="cblue">
             <a-animation attribute="scale" dur="1000" from="1 1 1" to="2 2 2" direction="alternate-reverse"
                          easing="ease-in-out-circ" repeat="indefinite"></a-animation>
-        </a-sphere>
-        <a-entity id="aCubo" position="0 2.5 0" wasd-controls look-controls-for-position
-                  text="width: 2; color: white; value: Kanji" rotation="-60">
+        </a-entity>
+
+        <a-entity id="aEsfera" position='0 2 0' radius="0.1" mixin="cblue">
+            <a-animation attribute="scale" dur="1000" from="1 1 1" to="2 2 2" direction="alternate-reverse"
+                         easing="ease-in-out-circ" repeat="indefinite"></a-animation>
+        </a-entity>
+
+        <a-entity geo>
         </a-entity>
         <a-entity id="aSonido" sound="src: url(res/mario.mpeg);"></a-entity>
 
