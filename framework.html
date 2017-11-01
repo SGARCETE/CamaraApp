@@ -210,11 +210,23 @@
         function toDOM(jsonInput) {
             for(var i = 0; i < jsonInput.length; i++) {
                 var obj = jsonInput[i];
-                appendObject(obj.id,obj.type, obj.position, obj.material);
+                appendObject(obj);
+            }
+//            appendObj(2, "modelo3D_CCUNGS00_SinFondo001", "0 2 0", "0.3 0.3 0.3")
+        }
+
+
+        function appendObject(data){
+            console.log(data);
+            if(data.entity == 'geometry'){
+                appendGeometry(data.id,data.type, data.position, data.material);
+            }
+            else if (data.entity == 'obj'){
+                appendObj(data.id, data.file, data.position, data.scale);
             }
         }
 
-        function appendObject(id,type, position,material) {
+        function appendGeometry(id,type, position,material) {
             console.log(position);
             debugger;
             $('<a-entity />', {
@@ -224,9 +236,25 @@
                 material: material,
                 appendTo : $('#prueba')
             });
-            document.getElementById(id).setAttribute("position", position); // workaround - this does set position
+            document.getElementById(id).setAttribute("position", position);
             console.log($("#1"));
         }
+
+        function appendObj(id, file, position, scale) {
+            console.log(position);
+            $('<a-entity />', {
+                id: id,
+                position: position,  // doesn't seem to do anything
+                file: file,
+                scale: scale,
+                "obj-model": "obj: url(assets/obj/" + file + ".obj); mtl: url(assets/obj/" + file + ".mtl)",
+                // src: '#' + file + '-obj',
+                // mtl: '#' + file + '-mtl',
+                appendTo : $('#prueba')
+            });
+            document.getElementById(id).setAttribute("position", position);
+        }
+
     </script>
 </a-scene>
 </body>

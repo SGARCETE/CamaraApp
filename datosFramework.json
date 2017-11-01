@@ -1,14 +1,23 @@
 [
   {
     "id": 1111,
+    "entity": "geometry",
     "type": "primitive: sphere",
     "position":"0 2 1.4",
     "material": "color: black;"
   },
   {
     "id": 1112,
+    "entity": "geometry",
     "type": "primitive: box",
     "position":"0 2 0",
     "material": "color: yellow;"
+  },
+  {
+    "id": 1113,
+    "entity": "obj",
+    "file": "modelo3D_CCUNGS00_SinFondo001",
+    "position":"0 2 0",
+    "scale": "0.3 0.3 0.3"
   }
 ]
