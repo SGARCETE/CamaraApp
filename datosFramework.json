@@ -1,13 +1,15 @@
 [
   {
     "id": 1111,
+    "marker": "hiro",
     "entity": "geometry",
     "type": "primitive: sphere",
     "position":"0 2 1.4",
-    "material": "color: black;"
+    "material": "color: blue;"
   },
   {
     "id": 1112,
+    "marker": "kanji",
     "entity": "geometry",
     "type": "primitive: box",
     "position":"0 2 0",
@@ -15,9 +17,17 @@
   },
   {
     "id": 1113,
+    "marker": "hiro",
     "entity": "obj",
     "file": "modelo3D_CCUNGS00_SinFondo001",
     "position":"0 2 0",
-    "scale": "0.3 0.3 0.3"
+    "scale": "0.3 0.3 0.3",
+    "animation": {
+      "attribute": "rotation",
+      "dur": "3000",
+      "to": "0 360 0",
+      "repeat": "indefinite",
+      "easing" : "linear"
+    }
   }
 ]
