@@ -1,0 +1,29 @@
+[
+  {
+    "entity": "geometry",
+    "type": "box",
+    "position":"0 2 0",
+    "radius": "0.5",
+    "color": "red"
+  },
+  {
+    "entity": "geometry",
+    "type": "box",
+    "position":"0 2 0",
+    "color": "blue"
+  },
+  {
+    "entity": "geometry",
+    "type": "cylinder",
+    "position":"0.5 2 1",
+    "radius": "0.3",
+    "color": "yellow"
+  },
+  {
+    "entity": "obj",
+    "type": "cylinder",
+    "position":"0.5 2 1",
+    "radius": "0.3",
+    "color": "yellow"
+  }
+]
