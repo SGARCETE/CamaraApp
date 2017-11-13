@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+	<script src="aframe.min.js"></script>
+	<!--script src="aframe-ar.js"></script-->
+	<script src="js/jquery-3.2.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
+	<script src="look-controls.js"></script>
+	<script src="read-controls.js"></script>
+	<script src="click-controls.js"></script>
+</head>
+
+  <body>
+    <a-scene>
+		<!--Para pasarle funcion con argumentos deberiamos usar un array-->
+		<!--Las variables globales que puede usar es entidad, que es la entidad-->
+		<a-entity
+			position="-1 2.5 0"
+			geometry="primitive:box"
+			click-controls
+			
+			functionClickPresionado="entidad.setAttribute('material', 'color', '#e61c1c')"
+			functionAlSoltarClick="entidad.setAttribute('material', 'color', '#1ce6dd')";
+			>
+		</a-entity>
+		
+
+      <a-sky color="#222"></a-sky>
+      <a-entity position="0 1.8 2">
+        <a-entity camera></a-entity>
+      </a-entity>
+    </a-scene>
+
+    <script>
+      
+    </script>
+  </body>
+</html>

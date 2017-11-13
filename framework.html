@@ -86,28 +86,12 @@
 
 <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;' foo>
 
-    <a-mixin id="cblue" geometry="{{sphere.type}}" ></a-mixin>
-
     <a-marker preset='hiro'>
-        <a-entity id="prueba"></a-entity>
+        <a-entity id="hiro"></a-entity>
     </a-marker>
 
     <a-marker preset='kanji'>
-        <!-- BOX whith framework -->
-        <a-box id="boxKanji" position='{{box.position}}' color="{{box.color}}"></a-box>
-
-        <!-- BOX with text -->
-        <a-text id="textBoxKanji" position="0 2.5 0" wasd-controls look-controls-for-position value="Cubo Kanji" color="blue" width="2" rotation="-60">
-        </a-text>
-
-        <a-text position="0 2.5 0" value="HOLAAAAAAAA"></a-text>
-
-        <!-- Cylinder whith framework -->
-        <a-cylinder id="cylinderKanji" position="{{cylinder.position}}" radius="{{cylinder.radius}}" color="{{cylinder.color}}"></a-cylinder>
-
-        <!-- Sound Mario -->
-        <a-entity id="aSonido" sound="src: url(res/mario.mpeg);"></a-entity>
-
+        <a-entity id="kanji"></a-entity>
     </a-marker>
 
     <a-entity camera/><!--look-controls />-->
@@ -196,13 +180,12 @@
 
         AFRAME.registerComponent('foo', {
             init: function () {
-                loadFileButton();
+                loadFile();
             }
         });
 
-        function loadFileButton() {
+        function loadFile() {
             $.getJSON("datosFramework.json", function (json) {
-                debugger;
                 toDOM(json);
             });
         }
@@ -210,11 +193,25 @@
         function toDOM(jsonInput) {
             for(var i = 0; i < jsonInput.length; i++) {
                 var obj = jsonInput[i];
-                appendObject(obj.id,obj.type, obj.position, obj.material);
+                appendObject(obj);
+                if(obj.hasOwnProperty('animation')){
+                    appendAnimation(obj.id, obj.animation.attribute, obj.animation.dur, obj.animation.to, obj.animation.repeat, obj.animation.easing);
+                }
             }
         }
 
-        function appendObject(id,type, position,material) {
+
+        function appendObject(data){
+            console.log(data);
+            if(data.entity == 'geometry'){
+                appendGeometry(data.id,data.type, data.position, data.material,data.marker);
+            }
+            else if (data.entity == 'obj'){
+                appendObj(data.id, data.file, data.position, data.scale, data.marker);
+            }
+        }
+
+        function appendGeometry(id, type, position, material, marker) {
             console.log(position);
             debugger;
             $('<a-entity />', {
@@ -222,11 +219,36 @@
                 geometry: type,
                 position: position,
                 material: material,
-                appendTo : $('#prueba')
+                appendTo : $('#' + marker)
             });
-            document.getElementById(id).setAttribute("position", position); // workaround - this does set position
+            document.getElementById(id).setAttribute("position", position);
             console.log($("#1"));
         }
+
+        function appendObj(id, file, position, scale, marker) {
+            console.log(position);
+            $('<a-entity />', {
+                id: id,
+                position: position,
+                file: file,
+                scale: scale,
+                "obj-model": "obj: url(assets/obj/" + file + ".obj); mtl: url(assets/obj/" + file + ".mtl)",
+                appendTo : $('#' + marker)
+            });
+            document.getElementById(id).setAttribute("position", position);
+        }
+
+        function appendAnimation(id, attribute, dur, to, repeat, easing){
+            $('<a-animation/>', {
+                attribute: attribute,
+                dur: dur,
+                to: to,
+                repeat: repeat,
+                easing : easing,
+                appendTo : $('#' + id)
+            });
+        }
+
     </script>
 </a-scene>
 </body>
