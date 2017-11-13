@@ -1,17 +1,37 @@
-var app= angular.module('app' ,[]);
+var app= angular.module('app' ,['LocalStorageModule']);
 
-app.controller("SeguroController", ['$scope','Services', function($scope,Services){
-    var services = Services;
+app.controller("MenuController", ['$scope', 'Services', 'localStorageService', function($scope, Services, localStorageService){
 
-    services.getData().then(function(response) {
-        var primity = "primitive: ";
-        $scope.sphere = response[0];
-        $scope.sphere.type = primity+$scope.sphere.type;
-        $scope.box = response[1];
-        $scope.cylinder= response[2];
+    var localStorage = localStorageService;
 
-    }, function(error) {
-        console.log(error);
-    });
+        debugger;
+        var form = new Object();
+
+        form.marker = $scope.marker;
+        form.type = "primitive: "+$scope.type;
+        form.position = $scope.positionX+" "+ $scope.positionY+" "+ $scope.positionZ;
+
+        localStorage.set("form", form);
+        window.location.replace("/CamaraApp/framework.html");
+    };
+
 }]);
+
+app.controller("ArController", ['$scope', 'localStorageService', function($scope, localStorageService){
+
+    var localStorage = localStorageService;
+    debugger;
+
+    var form = localStorage.get('form');
+
+
+        $('<a-entity />', {
+            geometry: type,
+            position: position,
+            material: color,
+        });
+    }
+
+}]);
+
 
