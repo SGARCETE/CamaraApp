@@ -9,9 +9,10 @@
     <script src="look-controls.js"></script>
     <link rel="stylesheet" type="text/css" href="css/nav.css">
     <link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
+    <script src='js/localStorage/angular-local-storage.min.js'></script>
 </head>
 
-<body ng-controller="SeguroController" style='margin : 0px; overflow: hidden;'>
+<body ng-controller="ArController">
 
 <!-- menu HIRO -->
 <nav class="quick-nav" id="menu-hiro">
@@ -176,79 +177,6 @@
         function pausarSonido() {
             asonido.components.sound.pauseSound();
         }
-
-
-        AFRAME.registerComponent('foo', {
-            init: function () {
-                loadFile();
-            }
-        });
-
-        function loadFile() {
-            $.getJSON("datosFramework.json", function (json) {
-                toDOM(json);
-            });
-        }
-
-        function toDOM(jsonInput) {
-            for(var i = 0; i < jsonInput.length; i++) {
-                var obj = jsonInput[i];
-                appendObject(obj);
-                if(obj.hasOwnProperty('animation')){
-                    appendAnimation(obj.id, obj.animation.attribute, obj.animation.dur, obj.animation.to, obj.animation.repeat, obj.animation.easing);
-                }
-            }
-        }
-
-
-        function appendObject(data){
-            console.log(data);
-            if(data.entity == 'geometry'){
-                appendGeometry(data.id,data.type, data.position, data.material,data.marker);
-            }
-            else if (data.entity == 'obj'){
-                appendObj(data.id, data.file, data.position, data.scale, data.marker);
-            }
-        }
-
-        function appendGeometry(id, type, position, material, marker) {
-            console.log(position);
-            debugger;
-            $('<a-entity />', {
-                id: id,
-                geometry: type,
-                position: position,
-                material: material,
-                appendTo : $('#' + marker)
-            });
-            document.getElementById(id).setAttribute("position", position);
-            console.log($("#1"));
-        }
-
-        function appendObj(id, file, position, scale, marker) {
-            console.log(position);
-            $('<a-entity />', {
-                id: id,
-                position: position,
-                file: file,
-                scale: scale,
-                "obj-model": "obj: url(assets/obj/" + file + ".obj); mtl: url(assets/obj/" + file + ".mtl)",
-                appendTo : $('#' + marker)
-            });
-            document.getElementById(id).setAttribute("position", position);
-        }
-
-        function appendAnimation(id, attribute, dur, to, repeat, easing){
-            $('<a-animation/>', {
-                attribute: attribute,
-                dur: dur,
-                to: to,
-                repeat: repeat,
-                easing : easing,
-                appendTo : $('#' + id)
-            });
-        }
-
     </script>
 </a-scene>
 </body>
