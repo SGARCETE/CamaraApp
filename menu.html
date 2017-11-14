@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ng-app="app">
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
@@ -14,52 +15,148 @@
     <br>
     <form>
         <div class="form-group col-md-12">
-            <label class="col-md-2">Marker:</label>
+            <label class="col-md-2">Figura:</label>
 
             <div class="col-md-3">
-                <select ng-model="marker" class="form-control">
-                    <option value="">-- Seleccione --</option>
-                    <option id="hiro" value="hiro">Hiro</option>
-                    <option id="kanji" value="kanji">Kanji</option>
-                </select>
+                <input type="radio" ng-model="option" value="createFigure"/>
             </div>
-
         </div>
 
         <div class="form-group col-md-12">
-            <label class="col-md-2">Tipo Figura:</label>
+            <label class="col-md-2">Archivo OBJ:</label>
 
             <div class="col-md-3">
-                <select ng-model="type" class="form-control">
-                    <option value="">-- Seleccione --</option>
-                    <option id="box" value="box">Box</option>
-                    <option id="sphere" value="sphere">Sphere</option>
-                    <option id="cylinder" value="cylinder">Cylinder</option>
-                </select>
+                <input type="radio" ng-model="option" value="createObj"/>
             </div>
         </div>
 
-        <div class="form-group col-md-12">
-            <label class="col-md-2">Posicion:</label>
+        <div ng-show="option == 'createFigure'" class="col-md-12">
 
-            <div class="col-md-6">
-                <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionX" placeholder="1">
-                <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionY" placeholder="0">
-                <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionZ" placeholder="1">
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Marker:</label>
+
+                <div class="col-md-3">
+                    <select ng-model="marker" class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option id="hiro" value="hiro">Hiro</option>
+                        <option id="kanji" value="kanji">Kanji</option>
+                    </select>
+                </div>
             </div>
 
-        </div>
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Tipo Figura:</label>
 
-        <div class="form-group col-md-12">
-            <label class="col-md-2">Color:</label>
+                <div class="col-md-3">
+                    <select ng-model="type" class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option id="box" value="box">Box</option>
+                        <option id="sphere" value="sphere">Sphere</option>
+                        <option id="cylinder" value="cylinder">Cylinder</option>
+                    </select>
+                </div>
+            </div>
 
-            <div class="col-md-3">
-                <input type="text" class="form-control" ng-model="color">
+            <div class="form-group col-md-12" ng-show="type == 'sphere' || type == 'cylinder'">
+                <label class="col-md-2">Radio:</label>
+
+                <div class="col-md-6">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="radio">
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Posicion:</label>
+
+                <div class="col-md-5">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionX" placeholder="1">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionY" placeholder="0">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionZ" placeholder="1">
+                </div>
+
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Color:</label>
+
+                <div class="col-md-1">
+                    <input type="color" class="form-control" ng-model="color">
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Con Animacion:</label>
+
+                <div class="col-md-3">
+                    <input type="checkbox" ng-model="conAnimation" />
+                </div>
+            </div>
+
+            <div ng-show="conAnimation">
+                <div class="form-group col-md-12">
+                    <label class="col-md-2">Atributo:</label>
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" ng-model="attribute" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label class="col-md-2">Duracion:</label>
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" ng-model="duration" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label class="col-md-2">Repeticion:</label>
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" ng-model="repeat" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="createFigure()">Crear Figura</button>
             </div>
         </div>
 
-        <div class="form-group col-md-12">
-            <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="createFigure()">Crear Figura</button>
+        <div ng-show="option == 'createObj'">
+
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Marker:</label>
+
+                <div class="col-md-3">
+                    <select ng-model="marker" class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option value="hiro">Hiro</option>
+                        <option value="kanji">Kanji</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Archivo OBJ:</label>
+
+                <div class="col-md-3">
+                    <input type="file" class="form-control" custom-on-change="uploadFileObj"/>
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Archivo MTL:</label>
+
+                <div class="col-md-3">
+                    <input type="file" class="form-control" custom-on-change="uploadFileMlt"/>
+                </div>
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="createObj()">Crear Obj</button>
+            </div>
         </div>
     </form>
 </body>
