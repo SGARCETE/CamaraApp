@@ -1,0 +1,191 @@
+<html ng-app="app">
+<head>
+    <script src="aframe.min.js"></script>
+    <script src="aframe-ar.min.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="js/framework.js"></script>
+    <script src='js/frameworkService.js'></script>
+    <script src="look-controls.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
+    <script src='js/localStorage/angular-local-storage.min.js'></script>
+</head>
+
+<body ng-controller="ArController">
+
+<!-- menu HIRO -->
+<nav class="quick-nav" id="menu-hiro">
+    <h3 id="menuHiroTitle">Menu Hiro</h3>
+    <a class="quick-nav-trigger" href="#0">
+        <span aria-hidden="true"></span>
+    </a>
+    <ul id="ulhiro">
+    </ul>
+    <span aria-hidden="true" class="quick-nav-bg"></span>
+</nav>
+
+<!-- menu KANJI -->
+<nav class="quick-nav" id="menu-kanji">
+    <h3 id="menuKanjiTitle">Menu Kanji</h3>
+    <a class="quick-nav-trigger" href="#0">
+        <span aria-hidden="true"></span>
+    </a>
+    <ul id="ulkanji">
+        <li>
+            <a onclick="showBoxWithText();">
+                <span>Cubo y Texto</span>
+                <i class="icon-film"></i>
+            </a>
+        </li>
+        <li>
+
+            <a onclick="showCylinderKanji();">
+                <span>Cilindro</span>
+                <i class="icon-doc"></i>
+            </a>
+        </li>
+        <li>
+            <a onclick="emitirSonido();">
+                <span>Sonido</span>
+                <i class="icon-music-tone-alt"></i>
+            </a>
+        </li>
+        <li>
+            <a onclick="showAllKanji();">
+                <span>Todo Kanji</span>
+                <i class="icon-size-fullscreen"></i>
+            </a>
+        </li>
+    </ul>
+    <span aria-hidden="true" class="quick-nav-bg"></span>
+</nav>
+
+<a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;' foo>
+
+    <a-marker preset='hiro'>
+        <a-entity id="hiro"></a-entity>
+    </a-marker>
+
+    <a-marker preset='kanji'>
+        <a-entity id="kanji"></a-entity>
+    </a-marker>
+
+    <a-entity camera/><!--look-controls />-->
+
+    <script src="js/quick-nav.js"></script>
+    <script src="aframe-drag-look-controls-component.js"></script>
+
+    <script>
+        // HIRO
+        var sphereHiro = document.getElementById('sphereHiro');
+        var textSphereHiro = document.getElementById('textSphereHiro');
+        var torusHiro = document.getElementById('torusHiro');
+        // KANJI
+        var boxKanji = document.getElementById('boxKanji');
+        var textBoxKanji = document.getElementById('textBoxKanji');
+        var cylinderKanji = document.getElementById('cylinderKanji');
+
+        var asonido = document.querySelector('#aSonido');
+        var escena = document.querySelector('a-scene');
+
+        $( document ).ready(function() {
+        //    appendObject(1,"0 2 0",);
+        });
+
+        function showObject(id) {
+            var object = document.getElementById(id);
+            if (object.getAttribute("visible")) {
+                object.setAttribute("visible", "false");
+            } else {
+                object.setAttribute("visible", "true");
+            }
+        }
+
+        function showSphereWithText() {
+            pausarSonido();
+
+            sphereHiro.setAttribute('visible', 'true');
+            textSphereHiro.setAttribute('visible', 'true');
+
+            torusHiro.setAttribute('visible', 'false');
+        }
+
+        function showBoxWithText() {
+            pausarSonido();
+
+            boxKanji.setAttribute('visible', 'true');
+            textBoxKanji.setAttribute('visible', 'true');
+
+            cylinderKanji.setAttribute('visible', 'false');
+
+            sphereHiro.setAttribute('visible', 'true');
+            sphereHiro.setAttribute('visible', 'true');
+            textSphereHiro.setAttribute('visible', 'false');
+        }
+
+        function showCylinderKanji(){
+            pausarSonido();
+
+            boxKanji.setAttribute('visible', 'false');
+            textBoxKanji.setAttribute('visible', 'false');
+
+            cylinderKanji.setAttribute('visible', 'true');
+        }
+
+        function showTorus() {
+            pausarSonido();
+
+            torusHiro.setAttribute('visible', 'true');
+
+            sphereHiro.setAttribute('visible', 'false');
+            textSphereHiro.setAttribute('visible', 'false');
+        }
+
+        function showAllHiro() {
+            sphereHiro.setAttribute('visible', 'true');
+            textSphereHiro.setAttribute('visible', 'true');
+            torusHiro.setAttribute('visible', 'true');
+            emitirSonido();
+        }
+
+        function showAllKanji() {
+            boxKanji.setAttribute('visible', 'true');
+            textBoxKanji.setAttribute('visible', 'true');
+            cylinderKanji.setAttribute('visible', 'true');
+            emitirSonido();
+        }
+
+        function emitirSonido() {
+            asonido.components.sound.playSound();
+        }
+        function pausarSonido() {
+            asonido.components.sound.pauseSound();
+        }
+    </script>
+</a-scene>
+</body>
+
+<style>
+    #menu-hiro {
+        position: fixed;
+        top: 38%;
+        right: 1%;
+    }
+    #menu-kanji {
+        position: fixed;
+        top: 80%;
+        right: 1%;
+    }
+    #menuHiroTitle{
+        position: absolute;
+        right: 30%;
+        color: red;
+    }
+    #menuKanjiTitle{
+        position: absolute;
+        right: 30%;
+        color: blue;
+    }
+</style>
+</html>
