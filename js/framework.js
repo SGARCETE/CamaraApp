@@ -5,6 +5,15 @@ app.controller("MenuController", ['$scope', 'Services', 'localStorageService', f
 
     var localStorage = localStorageService;
 
+    // PARA EL ID
+    var contador = 1;
+    if(localStorage.get("id") == null){
+        localStorage.set("id",contador);
+    }else{
+        contador = localStorage.get("id")+1;
+        localStorage.set("id",contador);
+    }
+
     // FILE OBJ
     $scope.uploadFileObj = function(){
         $scope.fileObj = event.target.files[0].name;
@@ -19,7 +28,8 @@ app.controller("MenuController", ['$scope', 'Services', 'localStorageService', f
     $scope.createFigure = function() {
         debugger;
         var form = new Object();
-        form.id = 1;
+        form.id = localStorage.get("id");
+        form.name = $scope.name;
         form.entity= "geometry";
         form.marker = $scope.marker;
         form.type = "primitive: "+$scope.type;
@@ -42,9 +52,13 @@ app.controller("MenuController", ['$scope', 'Services', 'localStorageService', f
     $scope.createObj = function() {
         debugger;
         var form = new Object();
+        form.id = localStorage.get("id");
+        form.entity = "obj";
+        form.name = $scope.name;
+        form.file = "modelo3D_CCUNGS00_SinFondo001";
+        form.position = $scope.positionX+" "+ $scope.positionY+" "+ $scope.positionZ;
+        form.scale = "0.3 0.3 0.3";
         form.marker = $scope.marker;
-        form.fileObj = $scope.fileObj;
-        form.fileMlt = $scope.fileMlt;
 
         localStorage.set("form", form);
         window.location.replace("/CamaraApp/framework.html");
@@ -61,7 +75,7 @@ debugger;
     var form = localStorage.get('form');
 
     appendObject(form);
-    createMenu(form)
+    createMenu(form);
 
     // function toDOM(jsonInput) {
     //     for(var i = 0; i < jsonInput.length; i++) {
@@ -87,12 +101,15 @@ debugger;
     }
 
     function appendGeometry(id,marker,type, position,color) {
-        $('<a-entity />', {
+        $('<a-entity/>', {
             id: id,
             geometry: type,
             position: position,
             material: color,
             visible: 'true',
+            "click-controls":'true',
+            "functionClickPresionado": "entidad.setAttribute('material', 'color', '#e61c1c')",
+            "functionAlSoltarClick":"entidad.setAttribute('material', 'color', '#1ce6dd')",
             appendTo : $('#' + marker)
         });
     }
@@ -122,10 +139,12 @@ debugger;
     }
 
     function createMenu(data){
-        $("#ul" + data.marker).append('<li> <a onclick= "showObject(' + data.id + ');"> <span>' + data.id + '</span> <i class="icon-film"></i> </a> </li>');
+        debugger;
+        $("#ul" + data.marker).append('<li> <a onclick= "showObject(' + data.id + ');"> <span>' + data.name + '</span> <i class="icon-film"></i> </a> </li>');
     }
-
 }]);
+
+
 
 // DIRECTIVE FILE
 app.directive('customOnChange', function() {

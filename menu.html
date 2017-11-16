@@ -36,7 +36,7 @@
                 <label class="col-md-2">Nombre:</label>
 
                 <div class="col-md-3">
-                    <input id="name"/>
+                    <input type="text" ng-model="name" class="form-control"/>
                 </div>
             </div>
 
@@ -77,9 +77,9 @@
                 <label class="col-md-2">Posicion:</label>
 
                 <div class="col-md-5">
-                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionX" placeholder="1">
-                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionY" placeholder="0">
-                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionZ" placeholder="1">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionX">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionY">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionZ">
                 </div>
 
             </div>
@@ -140,14 +140,6 @@
         <div ng-show="option == 'createObj'">
 
             <div class="form-group col-md-12">
-                <label class="col-md-2">Nombre:</label>
-
-                <div class="col-md-3">
-                    <input ng-model="name"/>
-                </div>
-            </div>
-
-            <div class="form-group col-md-12">
                 <label class="col-md-2">Marker:</label>
 
                 <div class="col-md-3">
@@ -160,29 +152,26 @@
             </div>
 
             <div class="form-group col-md-12">
-                <label class="col-md-2">Archivo OBJ:</label>
+                <label class="col-md-2">Obj:</label>
 
                 <div class="col-md-3">
-                    <input type="file" class="form-control" custom-on-change="uploadFileObj"/>
+                    <select ng-model="name" class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option value="Museo">Museo UNGS</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-group col-md-12">
-                <label class="col-md-2">Archivo MTL:</label>
+                <label class="col-md-2">Posicion:</label>
 
-                <div class="col-md-3">
-                    <input type="file" class="form-control" custom-on-change="uploadFileMlt"/>
+                <div class="col-md-5">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionX">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionY">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionZ">
                 </div>
+
             </div>
-
-            <div class="form-group col-md-12">
-                <label class="col-md-2">Textura:</label>
-
-                <div class="col-md-3">
-                    <input type="file" class="form-control" custom-on-change="uploadTexture"/>
-                </div>
-            </div>
-
 
             <div class="form-group col-md-12">
                 <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="createObj()">Crear Obj</button>
