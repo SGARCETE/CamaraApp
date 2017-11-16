@@ -33,6 +33,14 @@
         <div ng-show="option == 'createFigure'" class="col-md-12">
 
             <div class="form-group col-md-12">
+                <label class="col-md-2">Nombre:</label>
+
+                <div class="col-md-3">
+                    <input type="text" ng-model="name" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
                 <label class="col-md-2">Marker:</label>
 
                 <div class="col-md-3">
@@ -69,9 +77,9 @@
                 <label class="col-md-2">Posicion:</label>
 
                 <div class="col-md-5">
-                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionX" placeholder="1">
-                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionY" placeholder="0">
-                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionZ" placeholder="1">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionX">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionY">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionZ">
                 </div>
 
             </div>
@@ -97,23 +105,29 @@
                     <label class="col-md-2">Atributo:</label>
 
                     <div class="col-md-3">
-                        <input type="text" class="form-control" ng-model="attribute" />
+                        <select ng-model="attribute" class="form-control">
+                            <option value="">-- Seleccione --</option>
+                            <option value="rotation">Rotacion</option>
+                            <option value="scale">Escala</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label class="col-md-2">Duracion:</label>
-
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" ng-model="duration" />
-                    </div>
+                        <div class="col-md-5">
+                            <input class="col-md-2" type="number" value="3000" min="0" class="form-control" ng-model="duration" placeholder="1">
+                        </div>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label class="col-md-2">Repeticion:</label>
 
                     <div class="col-md-3">
-                        <input type="text" class="form-control" ng-model="repeat" />
+                        <select ng-model="repeat" class="form-control">
+                            <option value="">-- Seleccione --</option>
+                            <option value="indefinite">indefinida</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -138,21 +152,26 @@
             </div>
 
             <div class="form-group col-md-12">
-                <label class="col-md-2">Archivo OBJ:</label>
+                <label class="col-md-2">Obj:</label>
 
                 <div class="col-md-3">
-                    <input type="file" class="form-control" custom-on-change="uploadFileObj"/>
+                    <select ng-model="name" class="form-control">
+                        <option value="">-- Seleccione --</option>
+                        <option value="Museo">Museo UNGS</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-group col-md-12">
-                <label class="col-md-2">Archivo MTL:</label>
+                <label class="col-md-2">Posicion:</label>
 
-                <div class="col-md-3">
-                    <input type="file" class="form-control" custom-on-change="uploadFileMlt"/>
+                <div class="col-md-5">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionX">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionY">
+                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="positionZ">
                 </div>
-            </div>
 
+            </div>
 
             <div class="form-group col-md-12">
                 <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="createObj()">Crear Obj</button>
