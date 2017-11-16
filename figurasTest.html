@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+	<script src="aframe.js"></script>
+	<!--script src="aframe-ar.js"></script-->
+	<script src="js/jquery-3.2.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
+	<script src="look-controls.js"></script>
+	<script src="read-controls.js"></script>
+	<script src="click-controls.js"></script>
+	<script src="click-object-controls.js"></script>
+	
+	<script>
+	
+		function clickear(obj) {
+			console.log(obj);
+			
+			//obj.setAttribute('material', 'color', '#e61c1c');
+			
+			
+		}
+		var a ="PEPE"
+	</script>
+</head>
+
+  <body>
+    <a-scene>
+		<!--Para pasarle funcion con argumentos deberiamos usar un array-->
+		<!--Las variables globales que puede usar es entidad, que es la entidad-->
+		<a-entity
+			position="-1 2.5 0"
+			geometry="primitive:box"
+			click-object-controls
+			id="entidad1"
+			functionClick="clickear(entidad1);"
+									
+			>
+		</a-entity>
+		<a-entity
+			position="-2 2.5 0"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="-3 2.5 0"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="1 2.5 0"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="2 3.5 0"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="-2 4.5 0"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="-3 1.5 0"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="1 0.5 0"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="2 -1.5 0"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="1 2.5 -3"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="2 3.5 -2"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="-2 4.5 -1"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="-3 1.5 3"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="1 0.5 2"
+			geometry="primitive:box"
+		>
+		</a-entity>
+		<a-entity
+			position="2 -1.5 1"
+			geometry="primitive:box"
+		>
+		</a-entity>		
+
+      <a-sky color="#222"></a-sky>
+      <a-entity position="0 1.8 4">
+        <a-entity id="EstaEsLaCamara" camera>
+			<a-cursor fuse="true" color="yellow"></a-cursor>
+		</a-entity>
+      </a-entity>
+    </a-scene>
+
+    <script>
+	//functionClickPresionado="entidad.setAttribute('material', 'color', '#e61c1c')"
+		//	functionClickPresionado="entidad.setAttribute('material', 'color', '#e61c1c')"
+			//functionClick="entidad.setAttribute('position', '-1 1 0')"
+		//	functionAlSoltarClick="entidad.setAttribute('material', 'color', '#1ce6dd')
+			//						entidad.setAttribute('position', '-1 2.5 0')"
+			
+		
+		
+    </script>
+  </body>
+</html>
