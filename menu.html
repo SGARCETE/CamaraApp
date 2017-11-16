@@ -33,6 +33,14 @@
         <div ng-show="option == 'createFigure'" class="col-md-12">
 
             <div class="form-group col-md-12">
+                <label class="col-md-2">Nombre:</label>
+
+                <div class="col-md-3">
+                    <input id="name"/>
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
                 <label class="col-md-2">Marker:</label>
 
                 <div class="col-md-3">
@@ -97,23 +105,29 @@
                     <label class="col-md-2">Atributo:</label>
 
                     <div class="col-md-3">
-                        <input type="text" class="form-control" ng-model="attribute" />
+                        <select ng-model="attribute" class="form-control">
+                            <option value="">-- Seleccione --</option>
+                            <option value="rotation">Rotacion</option>
+                            <option value="scale">Escala</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label class="col-md-2">Duracion:</label>
-
-                    <div class="col-md-3">
-                        <input type="text" class="form-control" ng-model="duration" />
-                    </div>
+                        <div class="col-md-5">
+                            <input class="col-md-2" type="number" value="3000" min="0" class="form-control" ng-model="duration" placeholder="1">
+                        </div>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label class="col-md-2">Repeticion:</label>
 
                     <div class="col-md-3">
-                        <input type="text" class="form-control" ng-model="repeat" />
+                        <select ng-model="repeat" class="form-control">
+                            <option value="">-- Seleccione --</option>
+                            <option value="indefinite">indefinida</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -124,6 +138,14 @@
         </div>
 
         <div ng-show="option == 'createObj'">
+
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Nombre:</label>
+
+                <div class="col-md-3">
+                    <input ng-model="name"/>
+                </div>
+            </div>
 
             <div class="form-group col-md-12">
                 <label class="col-md-2">Marker:</label>
@@ -150,6 +172,14 @@
 
                 <div class="col-md-3">
                     <input type="file" class="form-control" custom-on-change="uploadFileMlt"/>
+                </div>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label class="col-md-2">Textura:</label>
+
+                <div class="col-md-3">
+                    <input type="file" class="form-control" custom-on-change="uploadTexture"/>
                 </div>
             </div>
 

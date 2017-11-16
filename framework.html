@@ -20,31 +20,7 @@
     <a class="quick-nav-trigger" href="#0">
         <span aria-hidden="true"></span>
     </a>
-    <ul>
-        <li>
-            <a onclick="showSphereWithText();">
-                <span>Esfera y Texto</span>
-                <i class="icon-film"></i>
-            </a>
-        </li>
-        <li>
-            <a onclick="showTorus();">
-                <span>Torus</span>
-                <i class="icon-doc"></i>
-            </a>
-        </li>
-        <li>
-            <a onclick="emitirSonido();">
-                <span>Sonido</span>
-                <i class="icon-music-tone-alt"></i>
-            </a>
-        </li>
-        <li>
-            <a onclick="showAllHiro();">
-                <span>Todo Hiro</span>
-                <i class="icon-size-fullscreen"></i>
-            </a>
-        </li>
+    <ul id="ulhiro">
     </ul>
     <span aria-hidden="true" class="quick-nav-bg"></span>
 </nav>
@@ -55,7 +31,7 @@
     <a class="quick-nav-trigger" href="#0">
         <span aria-hidden="true"></span>
     </a>
-    <ul>
+    <ul id="ulkanji">
         <li>
             <a onclick="showBoxWithText();">
                 <span>Cubo y Texto</span>
@@ -116,6 +92,15 @@
         $( document ).ready(function() {
         //    appendObject(1,"0 2 0",);
         });
+
+        function showObject(id) {
+            var object = document.getElementById(id);
+            if (object.getAttribute("visible")) {
+                object.setAttribute("visible", "false");
+            } else {
+                object.setAttribute("visible", "true");
+            }
+        }
 
         function showSphereWithText() {
             pausarSonido();
