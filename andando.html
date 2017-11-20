@@ -1,7 +1,7 @@
 <head>
     <title>My A-Frame Scene</title>
 
-    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="aframe.js"></script>
     <script src="aframe-ar.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script> //sirve para tomar el evento cuando el mouse pasa por arriba de una figura
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
@@ -14,29 +14,22 @@
 
     <a-marker preset='hiro'>
         <!-- Cuando hace click cambia de verde a rojo -->
-        <a-cylinder position="1 0.5 -3" color="green" radius="0.3" height="1.5"
+        <a-cylinder position="1 0.5 0" color="green" radius="0.3" height="1.5"
 
         >
             <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
 
         </a-cylinder>
 
-        <a-box position="0 3.5 -2" rotation="30 30 0" color="skyblue" event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1" event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1" scale="" visible="" material="" geometry="">
+        <a-box position="0 3.5 0" rotation="30 30 0" color="skyblue" event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1" event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1" scale="" visible="" material="" geometry="">
             <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
         </a-box>
 
         <!-- Cuando apoya el mouse cambia de verde a naranja luego cuando sale de la figura cambia a azul y queda fijo en ese color -->
-        <a-box position="-1 0.5 -3" rotation="0 30 0" color="green"
+        <a-box position="-1 0.5 0" rotation="0 30 0" color="green"
                event-set__click="color: #D23514"
                event-set__leave="color: #3D85C6"></a-box>
 
-        <a-entity position="0 1.8 4" rotation scale visible>
-            <a-entity camera look-controls mouse-cursor position rotation scale visible>
-                <a-cursor fuse="true" color="yellow" position rotation scale visible material raycaster cursor geometry>
-
-                </a-cursor>
-            </a-entity>
-        </a-entity>
     </a-marker>
 
 
