@@ -135,6 +135,10 @@
             <div class="form-group col-md-12">
                 <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="createFigure()">Crear Figura</button>
             </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="nextPage()">Pasar AR</button>
+            </div>
         </div>
 
         <div ng-show="option == 'createObj'">
@@ -178,6 +182,25 @@
             </div>
         </div>
     </form>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Marker</th>
+            <th>Type</th>
+            <th>Color</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="figure in figures">
+            <td>{{figure.name}}</td>
+            <td>{{figure.marker}}</td>
+            <td>{{figure.type}}</td>
+            <td>{{figure.color}}</td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>
 
