@@ -4,15 +4,7 @@ var app= angular.module('app' ,['LocalStorageModule']);
 app.controller("MenuController", ['$scope', 'Services', 'localStorageService', function($scope, Services, localStorageService){
 
     var localStorage = localStorageService;
-
-    // PARA EL ID
-    var contador = 1;
-    if(localStorage.get("id") == null){
-        localStorage.set("id",contador);
-    }else{
-        contador = localStorage.get("id")+1;
-        localStorage.set("id",contador);
-    }
+    var listFigures = [];
 
     // FILE OBJ
     $scope.uploadFileObj = function(){
@@ -27,6 +19,16 @@ app.controller("MenuController", ['$scope', 'Services', 'localStorageService', f
     // FIGURE
     $scope.createFigure = function() {
         debugger;
+
+        // PARA EL ID
+        var contador = 1;
+        if(localStorage.get("id") == null){
+            localStorage.set("id",contador);
+        }else{
+            contador = localStorage.get("id")+1;
+            localStorage.set("id",contador);
+        }
+
         var form = new Object();
         form.id = localStorage.get("id");
         form.name = $scope.name;
@@ -43,11 +45,17 @@ app.controller("MenuController", ['$scope', 'Services', 'localStorageService', f
             form.animation.duration = $scope.duration;
             form.animation.repeat = $scope.repeat;
         }
-
+debugger;
         localStorage.set("form", form);
-        window.location.replace("/CamaraApp/framework.html");
+        listFigures.push(form);
+        $scope.figures = listFigures;
     };
 
+    $scope.nextPage = function() {
+        $scope.figures = listFigures;
+        localStorage.set("figures", $scope.figures);
+        window.location.replace("/CamaraApp/framework.html");
+    };
     // OBJ
     $scope.createObj = function() {
         debugger;
@@ -64,8 +72,6 @@ app.controller("MenuController", ['$scope', 'Services', 'localStorageService', f
         window.location.replace("/CamaraApp/framework.html");
     };
 
-
-
 }]);
 
 // CONTROLLER PAG FRAMEWOKR
@@ -73,19 +79,13 @@ app.controller("ArController", ['$scope', 'localStorageService', function($scope
 debugger;
     var localStorage = localStorageService;
     var form = localStorage.get('form');
+    var figures = localStorage.get('figures');
 
-    appendObject(form);
+    for(var i in figures){
+        appendObject(figures[i]);
+    }
+
     createMenu(form);
-
-    // function toDOM(jsonInput) {
-    //     for(var i = 0; i < jsonInput.length; i++) {
-    //         var obj = jsonInput[i];
-    //         appendObject(obj);
-    //         if(obj.hasOwnProperty('animation')){
-    //             appendAnimation(obj.id, obj.animation.attribute, obj.animation.dur, obj.animation.to, obj.animation.repeat, obj.animation.easing);
-    //         }
-    //     }
-    // }
 
     function appendObject(data){
         if(data.entity == 'geometry'){
@@ -96,7 +96,8 @@ debugger;
         }
 
         if(data.hasOwnProperty('animation')){
-            appendAnimation(data.id, data.animation.attribute, data.animation.duration, "0 360 0", data.animation.repeat, "linear");
+//            appendAnimation(data.id, data.animation.attribute, data.animation.duration, "30 30 360", data.animation.repeat, "linear");
+            appendAnimationClick(data.id, data.animation.attribute, data.animation.duration, "30 30 360");
         }
     }
 
@@ -107,11 +108,9 @@ debugger;
             position: position,
             material: color,
             visible: 'true',
-            "click-controls":'true',
-            "functionClickPresionado": "entidad.setAttribute('material', 'color', '#e61c1c')",
-            "functionAlSoltarClick":"entidad.setAttribute('material', 'color', '#1ce6dd')",
             appendTo : $('#' + marker)
         });
+        document.getElementById(id).setAttribute("position", position);
     }
 
     function appendObj(id, file, position, scale, marker) {
@@ -134,6 +133,16 @@ debugger;
             to: to,
             repeat: repeat,
             easing : easing,
+            appendTo : $('#' + id)
+        });
+    }
+
+    function appendAnimationClick(id,attribute, dur, to){
+        $('<a-animation/>', {
+            attribute: attribute,
+            begin: "click",
+            dur: dur,
+            to: to,
             appendTo : $('#' + id)
         });
     }
