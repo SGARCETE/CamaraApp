@@ -6,7 +6,12 @@
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/framework.js"></script>
     <script src='js/frameworkService.js'></script>
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+
 </head>
 
 <body ng-controller="MenuController">
@@ -63,14 +68,6 @@
                 </div>
             </div>
 
-            <div class="form-group col-md-12" ng-show="type == 'sphere' || type == 'cylinder'">
-                <label class="col-md-2">Radio:</label>
-
-                <div class="col-md-6">
-                    <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="radio">
-                </div>
-            </div>
-
             <div class="form-group col-md-12">
                 <label class="col-md-2">Posicion:</label>
 
@@ -100,21 +97,50 @@
 
             <div ng-show="conAnimation">
                 <div class="form-group col-md-12">
-                    <label class="col-md-2">Atributo:</label>
+                    <label class="col-md-2">Accion:</label>
 
                     <div class="col-md-3">
                         <select ng-model="attribute" class="form-control">
                             <option value="">-- Seleccione --</option>
-                            <option value="rotation">Rotacion</option>
-                            <option value="scale">Escala</option>
+                            <option value="rotation">Rotar</option>
+                            <option value="scale">Escalar</option>
+                            <option value="material.color">Cambiar color</option>
                         </select>
+                    </div>
+                </div>
+
+                <div ng-show="attribute == 'rotation'" class="form-group col-md-12">
+                    <label class="col-md-2">Rotacion :</label>
+
+                    <div class="col-md-5">
+                        <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="rotationX">
+                        <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="rotationY">
+                        <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="rotationZ">
+                    </div>
+                </div>
+
+                <div ng-show="attribute == 'scale'" class="form-group col-md-12">
+                    <label class="col-md-2">Escala :</label>
+
+                    <div class="col-md-5">
+                        <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="scaleX">
+                        <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="scaleY">
+                        <input class="col-md-2" type="number" value="0" min="0" class="form-control" ng-model="scaleZ">
+                    </div>
+                </div>
+
+                <div ng-show="attribute == 'material.color'" class="form-group col-md-12">
+                    <label class="col-md-2">Color :</label>
+
+                    <div class="col-md-3">
+                        <input ng-model="colorAlternativo" class="form-control" type="text">
                     </div>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label class="col-md-2">Duracion:</label>
-                        <div class="col-md-5">
-                            <input class="col-md-2" type="number" value="3000" min="0" class="form-control" ng-model="duration" placeholder="1">
+                        <div class="col-md-1">
+                            <input class="form-control" type="number" value="3000" min="0" class="form-control" ng-model="duration" placeholder="1">
                         </div>
                 </div>
 
@@ -131,11 +157,10 @@
             </div>
 
             <div class="form-group col-md-12">
-                <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="createFigure()">Crear Figura</button>
-            </div>
-
-            <div class="form-group col-md-12">
-                <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="nextPage()">Pasar AR</button>
+                <button type="submit" class="col-md-1 col-md-offset-1 btn btn-success" ng-click="createFigure()">
+                    <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Crear Figura</button>
+                <button type="submit" class="col-md-1 col-md-offset-1 btn btn-primary" ng-click="nextPage()">
+                    <i class="fa fa-check" aria-hidden="true"></i>&nbsp;Enviar</button>
             </div>
         </div>
 
@@ -176,7 +201,7 @@
             </div>
 
             <div class="form-group col-md-12">
-                <button type="submit" class="col-md-2 col-md-offset-1 btn btn-default" ng-click="createObj()">Crear Obj</button>
+                <button type="submit" class="col-md-2 col-md-offset-1 btn btn-primary" ng-click="createObj()">Crear Obj</button>
             </div>
         </div>
     </form>
@@ -184,18 +209,22 @@
     <table class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>Nombre</th>
             <th>Marker</th>
-            <th>Type</th>
+            <th>Tipo</th>
             <th>Color</th>
+            <th>Posicion</th>
+            <th>Con Animacion</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="figure in figures">
-            <td>{{figure.name}}</td>
-            <td>{{figure.marker}}</td>
-            <td>{{figure.type}}</td>
-            <td>{{figure.color}}</td>
+        <tr ng-repeat="figureTemplate in listFiguresTemplate">
+            <td>{{figureTemplate.name}}</td>
+            <td>{{figureTemplate.marker}}</td>
+            <td>{{figureTemplate.type}}</td>
+            <td>{{figureTemplate.color}}</td>
+            <td>{{figureTemplate.position}}</td>
+            <td>{{figureTemplate.conAnimation}}</td>
         </tr>
         </tbody>
     </table>
