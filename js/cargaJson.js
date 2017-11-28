@@ -1,5 +1,6 @@
 function cargarJson(src) {
 	var sceneEl = document.querySelector('a-marker');
+	vaciarEscena(sceneEl);
 	$.getJSON(src, function(data) {
 		$.each(data, function(i, item) {
 			var jsonData = item;
@@ -31,4 +32,12 @@ function cargarJson(src) {
 			console.log(entityEl);
 		});
 	});
+}
+
+function vaciarEscena(escena) {
+	var hijos = document.querySelector('a-marker').getChildren();
+	$.each(hijos, function(i, item) {
+		escena.removeChild(item);
+	});
+	
 }
