@@ -1,0 +1,81 @@
+<head>
+    <title>My A-Frame Scene</title>
+	<script src="js/jquery-3.2.1.js"></script>
+    <script src="aframe.js"></script>
+    <script src="aframe-ar.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.0.0/dist/aframe-event-set-component.min.js"></script>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+    <style type="text/css" data-href="src/style/aframe.css"></style>
+	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	<link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
+	<script src="js/cargaJson.js"></script>
+</head>
+
+<body style='margin : 0px; overflow: hidden;'>
+<!-- menu HIRO -->
+<nav class="quick-nav" id="menu-hiro">
+    <h3 id="menuHiroTitle">Menu Hiro</h3>
+    <a class="quick-nav-trigger" href="#0">
+        <span aria-hidden="true"></span>
+    </a>
+    <ul id="ulhiro">
+		<li>
+			<a onclick="cargarJson('sarmiento.json');">
+                <span>Sarmiento</span>
+                <i class="icon-film"></i>
+            </a>
+		</li>
+    </ul>
+    <span aria-hidden="true" class="quick-nav-bg"></span>
+</nav>
+
+<a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;' cursor="rayOrigin: mouse">
+
+    <a-marker preset='hiro'>
+        <!-- Cuando hace click cambia de verde a rojo 
+		<a-image position="0 0 0" rotation="90 180 0" width="5" height="4.5" src="img/sarmiento.jpg"></a-image>
+        -->
+		<a-cylinder position="1 0.5 0" color="green" radius="0.3" height="1.5">
+            <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
+        </a-cylinder>
+<!--
+        <a-box position="0 3.5 0" rotation="30 30 0" color="skyblue" event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1" event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1" scale="" visible="" material="" geometry="">
+            <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
+        </a-box>
+
+        <!-- Cuando apoya el mouse cambia de verde a naranja luego cuando sale de la figura cambia a azul y queda fijo en ese color
+        <a-box position="-1 0.5 0" rotation="0 30 0" color="green"
+               event-set__click="color: #D23514"
+               event-set__leave="color: #3D85C6"></a-box>
+		-->
+    </a-marker>
+
+
+</a-scene>
+</body>
+<style>
+    #menu-hiro {
+        position: fixed;
+        top: 38%;
+        right: 1%;
+    }
+    #menu-kanji {
+        position: fixed;
+        top: 80%;
+        right: 1%;
+    }
+    #menuHiroTitle{
+        position: absolute;
+        right: 30%;
+        color: red;
+    }
+    #menuKanjiTitle{
+        position: absolute;
+        right: 30%;
+        color: blue;
+    }
+</style>
+<script src="js/quick-nav.js"></script>
+<script>
+	
+</script>
