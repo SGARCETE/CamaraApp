@@ -84,7 +84,7 @@ debugger;
     $scope.nextPage = function() {
         $scope.figures = listFigures;
         localStorage.set("figures", $scope.figures);
-        window.location.replace("/CamaraApp/framework.html");
+        window.location.href = "framework.html";
     };
 
     // OBJ
@@ -100,7 +100,7 @@ debugger;
         form.marker = $scope.marker;
 
         localStorage.set("form", form);
-        window.location.replace("/CamaraApp/framework.html");
+        window.location.href = "framework.html";
     };
 
 }]);
