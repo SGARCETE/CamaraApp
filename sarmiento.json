@@ -3,10 +3,18 @@
     "id": "Sarmiento",
     "marker": "hiro",
     "primitiva": "image",
-    "position": "0,0,0",
+    "position": "0,0,2",
 	"rotation": "90,180,0",
 	"width": "5" ,
 	"height": "4.5",
 	"src": "img/sarmiento.jpg"
+  },
+  {
+	"id": "Bibliografia",
+	"marker": "hiro",
+	"position": "-1,2,0",
+	"rotation": "270,0,0",
+    "text": "width: 5; color: white; value: Ver Bibliografía",
+	"event-set__click": "text: 'width: 5; color: white; value: Mostrando biografía' click-controls"
   }
 ]
