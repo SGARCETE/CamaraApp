@@ -17,7 +17,7 @@
 <body style='margin : 0px; overflow: hidden;'>
 <!-- menu HIRO -->
 <nav class="quick-nav" id="menu-hiro">
-    <h3 id="menuHiroTitle">Menu Hiro</h3>
+    <h3 id="menuHiroTitle">Demo</h3>
     <a class="quick-nav-trigger" href="#0">
         <span aria-hidden="true"></span>
     </a>
@@ -29,12 +29,20 @@
             </a>
 		</li>
     </ul>
+	<ul id="ulhiro">
+		<li>
+			<a onclick="cargarJson('figuras.json');">
+                <span>Figuras</span>
+                <i class="icon-film"></i>
+            </a>
+		</li>
+    </ul>
     <span aria-hidden="true" class="quick-nav-bg"></span>
 </nav>
 
 <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;' cursor="rayOrigin: mouse">
 
-    <a-marker preset='hiro'>
+    <a-marker preset='hiro' id="escenarioHiro">
 
         <a-entity scale = "0.05 0.05 0.05" position= "0 0 0" rotation= "-90 0 00" obj-model="mtl: url(helmet.mtl); obj: url(helmet.obj)" >
             <a-animation attribute = "rotation" dur = "3000" repeat="indefinite"  to="-91 0 360" easing="linear" begin="click"> </a-animation>
@@ -42,7 +50,7 @@
 
     </a-marker>
 
-    <a-marker preset='kanji'>
+    <a-marker preset='kanji'  id="escenarioKanji">
 
         <a-entity scale='0.08 0.08 0.08' position= "0 0 0" rotation= "-90 0 00" mmd>
             <a-entity

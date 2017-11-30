@@ -5,8 +5,10 @@
 }*/
 
 function cargarJson(src) {
-	var sceneEl = document.querySelector('a-marker');
-	vaciarEscena(sceneEl);
+	var sceneElHiro = document.getElementById('escenarioHiro');
+	var sceneElKanji = document.getElementById('escenarioKanji');
+	vaciarEscena(sceneElHiro);
+	vaciarEscena(sceneElKanji);
 	$.getJSON(src, function(data) {
 		//console.log("Entra aca");
 		$.each(data, function(i, item) {
@@ -32,14 +34,22 @@ function cargarJson(src) {
 						break;
 				}
 			}
-			sceneEl.appendChild(entityEl);
+			switch (item["marker"]) {
+				case "hiro":
+					sceneElHiro.appendChild(entityEl);
+					break;
+				case "kanji":
+					sceneElKanji.appendChild(entityEl);
+					break;
+			}
+			
 			console.log(entityEl);
 		});
 	});
 }
 
 function vaciarEscena(escena) {
-	var hijos = document.querySelector('a-marker').getChildren();
+	var hijos = escena.getChildren();
 	$.each(hijos, function(i, item) {
 		escena.removeChild(item);
 	});

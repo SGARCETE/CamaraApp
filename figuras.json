@@ -1,0 +1,23 @@
+[
+  {
+    "id": "CuboHiro",
+    "marker": "hiro",
+    "primitiva": "box",
+    "position": "2,2,-2",
+	"width": "1",
+	"height": "2",
+	"depth": "1",
+	"color": "#4CC3D9"
+  },
+  {
+	"id": "ConoKanji",
+    "marker": "kanji",
+    "primitiva": "cone",
+    "position": "0,0,-2",
+	"rotation": "135,45,30",
+	"height": "1",
+	"radius-top": "2",
+	"radius-bottom": "1",
+	"color": "#F3BA8D"
+  }
+]
