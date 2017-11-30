@@ -107,7 +107,7 @@ app.controller("MenuController", ['$scope', 'Services', 'localStorageService', f
 
     // OBJ
     $scope.createObj = function() {
-        debugger;
+
         var form = new Object();
         form.id = localStorage.get("id");
         form.entity = "obj";
@@ -145,7 +145,7 @@ app.controller("ArController", ['$scope', 'localStorageService', function($scope
         }
 
         if(data.hasOwnProperty('animation')){
-            debugger;
+            
             if(data.animation.attribute == "rotation"){
                 appendAnimationClick(data);
             }
