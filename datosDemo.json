@@ -1,0 +1,12 @@
+[
+  {
+    "id": "Sarmiento",
+    "marker": "hiro",
+    "entity": "image",
+    "position": "0 0 0",
+	"rotation": "90 180 0",
+	"width": "5" ,
+	"height": "4.5",
+	"src": "img/sarmiento.jpg"
+  }
+]
