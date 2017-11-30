@@ -1,7 +1,14 @@
+/*function cargarJson(src) {
+	$.getJSON(src, function(data) {
+		console.log(data);
+	});
+}*/
+
 function cargarJson(src) {
 	var sceneEl = document.querySelector('a-marker');
 	vaciarEscena(sceneEl);
 	$.getJSON(src, function(data) {
+		//console.log("Entra aca");
 		$.each(data, function(i, item) {
 			var jsonData = item;
 			var entidad = item["primitiva"] == null ? "a-entity" : "a-" + item["primitiva"];
@@ -25,9 +32,6 @@ function cargarJson(src) {
 						break;
 				}
 			}
-			/*$.each(data[i], function(j, item) {
-				console.log(data[i][j]);
-			});*/
 			sceneEl.appendChild(entityEl);
 			console.log(entityEl);
 		});

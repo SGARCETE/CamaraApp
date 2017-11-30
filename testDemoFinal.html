@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="css/nav.css">
 	<link rel="stylesheet" type="text/css" href="iconos/simple-line-icons.css">
 	<script src="js/cargaJson.js"></script>
+	<script src="js/click-controls.js"></script>
+	<script src="js/read-controls.js"></script>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
@@ -39,11 +41,15 @@
             <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
         </a-cylinder>
 		
-		<a-entity position="-1 2.5 0" rotation="270 0 0"
-                text="width: 2; color: white; value: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam"
-				"event-set__click"= "text: 'width: 5; color: white; value: Mostrando biografía'"
+		<a-text position="-1 2.5 0" rotation="270 0 0"
+                width="2"
+				color="white"
+				value="Click para mas info"
+				click-controls=true
+				functionClick="	entidad.setAttribute('value', 'Mostrando más info');
+								entidad.setAttribute('read-controls', '');"
 				>
-		</a-entity>
+		</a-text>
 <!--
         <a-box position="0 3.5 0" rotation="30 30 0" color="skyblue" event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1" event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1" scale="" visible="" material="" geometry="">
             <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>

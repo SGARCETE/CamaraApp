@@ -3,18 +3,22 @@
     "id": "Sarmiento",
     "marker": "hiro",
     "primitiva": "image",
-    "position": "0,0,2",
+    "position": "0,0,0",
 	"rotation": "90,180,0",
-	"width": "5" ,
-	"height": "4.5",
+	"width": "3" ,
+	"height": "3",
 	"src": "img/sarmiento.jpg"
   },
   {
 	"id": "Bibliografia",
 	"marker": "hiro",
-	"position": "-1,2,0",
+	"primitiva": "text",
+	"position": "1,2,0",
 	"rotation": "270,0,0",
-    "text": "width: 5; color: white; value: Ver Bibliografía",
-	"event-set__click": "text: 'width: 5; color: white; value: Mostrando biografía' click-controls"
+	"width": "4",
+	"color": "white",
+	"value": "Click para mas info",
+	"click-controls": "",
+	"functionClick": "entidad.setAttribute('value', 'Domingo Faustino Sarmiento (San Juan, Provincias Unidas del Río de la Plata, 15 de febrero de 1811-Asunción, Paraguay, 11 de septiembre de 1888) fue un político, escritor, docente, periodista, militar y estadista argentino; gobernador de la provincia de San Juan entre 1862 y 1864, presidente de la Nación Argentina entre 1868 y 1874, senador nacional por su provincia entre 1874 y 1879 y ministro del Interior en 1879.');entidad.setAttribute('read-controls', '');entidad.removeAttribute('click-controls');"
   }
 ]
