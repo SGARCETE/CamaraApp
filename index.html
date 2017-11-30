@@ -3,15 +3,27 @@
 </head>
 <html>
 	<body>
-		<div class="col-xs-1">
-			<button id="btnfrm" name="button" class="btn btn-primary" style="margin-bottom: 20px;">Framework</button>
+		<div class="wrapper">
+			<button id="btnfrm" name="button" class="botones" style="margin-bottom: 100px;width: 516px;height: 156px;">Framework</button>
 		</div>
 
-		<div class="col-xs-1">
-			<button id="btndem" name="button" class="btn btn-secondary">Demo</button>
+		<div class="wrapper">
+			<button id="btndem" name="button" class="botones" style="width: 516px;height: 156px;">Demo</button>
 		</div>
 	<body>
 <html>
+<style>
+	.wrapper {
+		text-align: center;
+	}
+	
+	.botones {
+		margin-bottom: 100px;
+		width: 516px;
+		height: 156px;
+		font-size: 50;
+	}
+</style>
 <script>
 	$(document).ready(function(){
 		$("#btnfrm").click(function(){
