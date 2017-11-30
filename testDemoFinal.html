@@ -11,6 +11,7 @@
 	<script src="js/cargaJson.js"></script>
 	<script src="js/click-controls.js"></script>
 	<script src="js/read-controls.js"></script>
+    <script src='js/a-mmd.js'></script>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
@@ -34,34 +35,26 @@
 <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;' cursor="rayOrigin: mouse">
 
     <a-marker preset='hiro'>
-        <!-- Cuando hace click cambia de verde a rojo 
-		<a-image position="0 0 0" rotation="90 180 0" width="5" height="4.5" src="img/sarmiento.jpg"></a-image>
-        -->
-		<a-cylinder position="1 0.5 0" color="green" radius="0.3" height="1.5">
-            <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
-        </a-cylinder>
-		
-		<a-text position="-1 2.5 0" rotation="270 0 0"
-                width="2"
-				color="white"
-				value="Click para mas info"
-				click-controls=true
-				functionClick="	entidad.setAttribute('value', 'Mostrando más info');
-								entidad.setAttribute('read-controls', '');"
-				>
-		</a-text>
-<!--
-        <a-box position="0 3.5 0" rotation="30 30 0" color="skyblue" event-set__enter="_event: mouseenter; material.color: yellowgreen; scale: 3 1 1" event-set__leave="_event: mouseleave; material.color: skyblue; scale: 1 1 1" scale="" visible="" material="" geometry="">
-            <a-animation attribute="rotation" begin="click" dur="500" fill="backwards" to="30 30 360"></a-animation>
-        </a-box>
 
-        <!-- Cuando apoya el mouse cambia de verde a naranja luego cuando sale de la figura cambia a azul y queda fijo en ese color-->
-        <a-box position="-1 0.5 0" rotation="0 30 0" color="green"
-               event-set__click="color: #D23514"
-               event-set__leave="color: #3D85C6">
-		   </a-box>
+        <a-entity scale = "0.05 0.05 0.05" position= "0 0 0" rotation= "-90 0 00" obj-model="mtl: url(helmet.mtl); obj: url(helmet.obj)" >
+            <a-animation attribute = "rotation" dur = "3000" repeat="indefinite"  to="-91 0 360" easing="linear" begin="click"> </a-animation>
+        </a-entity>
+
+    </a-marker>
+
+    <a-marker preset='kanji'>
+
+        <a-entity scale='0.08 0.08 0.08' position= "0 0 0" rotation= "-90 0 00" mmd>
+            <a-entity
+                    mmd-model='model : miku_v2.pmd; vmd : wavefile_v2.vmd;'
+                    shadow="cast:true"
+            >
+            </a-entity>
+        </a-entity>
 		
     </a-marker>
+
+
 
 
 </a-scene>
