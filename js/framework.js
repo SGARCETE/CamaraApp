@@ -18,7 +18,6 @@ app.controller("MenuController", ['$scope', 'Services', 'localStorageService', f
     };
 
     function addFigureToTable(){
-debugger;
         var figureTemplate = new Object();
 
         figureTemplate.name     = $scope.name;
@@ -32,6 +31,22 @@ debugger;
         $scope.listFiguresTemplate = listFiguresTemplate;
     };
 
+    function limpiarCampos() {
+        $scope.name = "";
+        $scope.marker = "";
+        $scope.type = "";
+        $scope.positionX = "";
+        $scope.positionY = "";
+        $scope.positionZ = "";
+        $scope.color = "";
+        $scope.conAnimation = false;
+        $scope.attribute = "";
+        $scope.colorAlternativo = "";
+        $scope.duration = "";
+        $scope.scaleX = "";
+        $scope.scaleY = "";
+        $scope.scaleZ = "";
+    }
 
     function createFormFigure(){
 
@@ -48,7 +63,9 @@ debugger;
         if($scope.conAnimation){
             form.animation = {};
             form.animation.attribute = $scope.attribute;
-            form.animation.colorAlternativo = $scope.colorAlternativo;
+            if($scope.colorAlternativo != undefined && $scope.colorAlternativo != "" && $scope.colorAlternativo != null){
+                form.animation.colorAlternativo = $scope.colorAlternativo;
+            }
             form.animation.duration = $scope.duration;
 
             if($scope.scaleX!=undefined && $scope.scaleY!=undefined && $scope.scaleZ!=undefined){
@@ -56,7 +73,6 @@ debugger;
             }
 
             form.animation.rotation =  $scope.rotationX+" "+ $scope.rotationY+" "+ $scope.rotationZ;
-            form.animation.repeat = $scope.repeat;
         }
 
         listFigures.push(form);
@@ -79,6 +95,8 @@ debugger;
         addFigureToTable();
         //  CREO LA FORM FIGURE Y LO GUARDO EN UNA LISTA PARA ENVIAR A LA SIGUIENTE PAG
         createFormFigure();
+
+        //limpiarCampos();
     };
 
     $scope.nextPage = function() {
@@ -89,7 +107,7 @@ debugger;
 
     // OBJ
     $scope.createObj = function() {
-        debugger;
+
         var form = new Object();
         form.id = localStorage.get("id");
         form.entity = "obj";
@@ -127,10 +145,11 @@ app.controller("ArController", ['$scope', 'localStorageService', function($scope
         }
 
         if(data.hasOwnProperty('animation')){
+            
             if(data.animation.attribute == "rotation"){
                 appendAnimationClick(data);
             }
-            if(data.animation.colorAlternativo != undefined && data.animation.colorAlternativo != null){
+            if(data.animation.colorAlternativo != undefined && data.animation.colorAlternativo != null && data.animation.colorAlternativo != ""){
                 appendAnimationClickColor(data);
             }
             if(data.animation.scale != undefined && data.animation.scale != null){
@@ -162,17 +181,6 @@ app.controller("ArController", ['$scope', 'localStorageService', function($scope
             appendTo:       $('#' + marker)
         });
         document.getElementById(id).setAttribute("position", position);
-    }
-
-    function appendAnimation(id,attribute, dur, to, repeat, easing){
-        $('<a-animation/>', {
-            attribute: attribute,
-            dur: dur,
-            to: to,
-            repeat: repeat,
-            easing : easing,
-            appendTo : $('#' + id)
-        });
     }
 
     function appendAnimationClick(data){
@@ -208,7 +216,7 @@ app.controller("ArController", ['$scope', 'localStorageService', function($scope
     }
 
     function createMenu(data){
-        $("#ul" + data.marker).append('<li> <a onclick= "showObject(' + data.id + ');"> <span>' + data.name + '</span> <i class="icon-film"></i> </a> </li>');
+        $("#ul" + data.marker).append('<li> <a onclick= "showObject(' + data.id + ');"> <span style="color: black">' + data.name + '</span> <i class="icon-film"></i> </a> </li>');
     }
 }]);
 
