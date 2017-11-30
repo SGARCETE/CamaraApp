@@ -1,0 +1,25 @@
+<head>
+	<script src="js/jquery-3.2.1.js"></script>
+</head>
+<html>
+	<body>
+		<div class="col-xs-1">
+			<button id="btnfrm" name="button" class="btn btn-primary" style="margin-bottom: 20px;">Framework</button>
+		</div>
+
+		<div class="col-xs-1">
+			<button id="btndem" name="button" class="btn btn-secondary">Demo</button>
+		</div>
+	<body>
+<html>
+<script>
+	$(document).ready(function(){
+		$("#btnfrm").click(function(){
+			window.location.href = "menu.html";
+		});
+		
+		$("#btndem").click(function(){
+			window.location.href = "testDemoFinal.html";
+		});
+	});
+</script>

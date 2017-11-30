@@ -7,17 +7,56 @@
 	"width": "1",
 	"height": "2",
 	"depth": "1",
-	"color": "#4CC3D9"
+	"color": "#4CC3D9",
+	"event-set__click": "position: -2,-2,2"
   },
   {
-	"id": "ConoKanji",
-    "marker": "kanji",
+	"id": "ConoHiro",
+    "marker": "hiro",
     "primitiva": "cone",
     "position": "0,0,-2",
 	"rotation": "135,45,30",
 	"height": "1",
 	"radius-top": "2",
 	"radius-bottom": "1",
-	"color": "#F3BA8D"
+	"color": "#F3BA8D",
+	"event-set__click": "color: #D23514"
+  },
+  {
+	"id": "CilindroHiro",
+    "marker": "hiro",
+    "primitiva": "cylinder",
+    "position": "-4,-5,-2",
+	"rotation": "145,-45,0",
+	"radius": "1",
+	"height": "2",
+	"segments-radial": "64",
+	"color": "#4CC3D9",
+	"event-set__mouseenter": "height: 6",
+	"event-set__mouseleave": "height: 2"
+  },
+  {
+	"id": "RingKanji",
+    "marker": "kanji",
+    "primitiva": "ring",
+    "position": "0,0,0",
+	"rotation": "270,180,180",
+	"radius-inner": "4",
+	"radius-outer": "5",
+	"segments-theta": "48",
+	"color": "#A7DBD8",
+	"event-set__mouseenter": "radius-inner: 2;radius-outer: 3;color:blue",
+	"event-set__mouseleave": "radius-inner: 4;radius-outer: 5;color:#A7DBD8"
+  },
+  {
+	"id": "CuboKanji",
+    "marker": "kanji",
+    "primitiva": "box",
+    "position": "-1,1,0",
+	"rotation": "0,30,0",
+	"width": "1",
+	"height": "1",
+	"color": "green",
+	"event-set__click": "color: #D23514"
   }
 ]
